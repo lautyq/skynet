@@ -11,33 +11,6 @@
     <style>
         /* Estilos generales y variables */
         :root {
-            /* Modo Claro (por defecto) */
-            --primary-color: #3f51b5; /* Azul índigo */
-            --secondary-color: #ff4081; /* Rosa fucsia */
-            --accent-color: #536dfe; /* Azul acento */
-            --dark-color: #2c3e50; /* Azul oscuro */
-            --light-color: #ecf0f1; /* Gris claro */
-            --white-color: #ffffff;
-            --body-bg: var(--light-color);
-          --body-bg-img: url('https://googleusercontent.com/image_collection/image_retrieval/11596770283826909374_1');
-            /* Ejemplo de URL: https://images.unsplash.com/photo-1510519138101-570d1dca3d66 */
-            --text-color: var(--dark-color);
-            --card-bg: rgba(255, 255, 255, 0.85);
-            --section-even-bg: rgba(255, 255, 255, 0.85);
-            --footer-bg: var(--dark-color);
-            --header-bg: rgba(44, 62, 80, 0.9);
-            --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
-            --box-shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.3);
-            --hero-title-light: var(--white-color);
-            --hero-bg-overlay: rgba(0, 0, 0, 0.4);
-            
-            --font-main: 'Poppins', sans-serif;
-            --font-secondary: 'Roboto', sans-serif;
-            --border-radius: 12px;
-        }
-
-        /* Estilos del modo oscuro */
-        body.dark-mode {
             --primary-color: #8c9eff; /* Azul claro más intenso */
             --secondary-color: #ff80ab; /* Rosa fucsia más intenso */
             --accent-color: #9fa8da; /* Azul acento claro */
@@ -53,98 +26,104 @@
             --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
             --box-shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.6);
             --hero-title-dark: #ff80ab; /* Rosa brillante para el título del héroe en modo oscuro */
+            
+            --font-main: 'Poppins', sans-serif;
+            --font-secondary: 'Roboto', sans-serif;
+            --border-radius: 12px;
         }
-        
-        body.dark-mode .logo span {
+
+        .logo span {
             color: var(--secondary-color);
         }
 
-        body.dark-mode .nav a:hover {
+        .nav a:hover {
             color: var(--secondary-color);
         }
 
-        body.dark-mode .nav a::after {
+        .nav a::after {
             background: var(--secondary-color);
         }
         
-        body.dark-mode .header {
+        .header {
             box-shadow: none;
         }
 
-        body.dark-mode .hero {
+        .hero {
             background: linear-gradient(135deg, #101827, #2c3e50);
         }
         
-        body.dark-mode .section-title,
-        body.dark-mode h4,
-        body.dark-mode .about-text h3 {
+        .section-title,
+        h4,
+        .about-text h3 {
             color: var(--primary-color);
         }
         
-        body.dark-mode .hero h2 {
+        .hero h2 {
             color: var(--hero-title-dark);
         }
         
-        body.dark-mode .section-subtitle,
-        body.dark-mode p,
-        body.dark-mode .about-text p,
-        body.dark-mode .about-text li,
-        body.dark-mode .contact-form label,
-        body.dark-mode .testimonial-card blockquote {
+        .section-subtitle,
+        p,
+        .about-text p,
+        .about-text li,
+        .contact-form label,
+        .testimonial-card blockquote {
             color: var(--text-color);
         }
         
-        body.dark-mode .service-card,
-        body.dark-mode .feature-item,
-        body.dark-mode .contact-form,
-        body.dark-mode .testimonial-card {
+        .service-card,
+        .feature-item,
+        .contact-form,
+        .testimonial-card {
             background: var(--card-bg);
             box-shadow: var(--box-shadow-dark);
         }
         
-        body.dark-mode .service-card li i,
-        body.dark-mode .feature-item .icon,
-        body.dark-mode .testimonial-card .author {
+        .service-card li i,
+        .feature-item .icon,
+        .testimonial-card .author {
             color: var(--primary-color);
         }
         
-        body.dark-mode .btn {
+        .btn {
             background: var(--primary-color);
         }
         
-        body.dark-mode .btn:hover {
+        .btn:hover {
             background: var(--accent-color);
         }
         
-        body.dark-mode .btn-secondary {
+        .btn-secondary {
             background: linear-gradient(45deg, var(--secondary-color), #ff80ab);
         }
         
-        body.dark-mode .footer {
+        .footer {
             border-top: 5px solid var(--secondary-color);
         }
 
-        body.dark-mode .footer .social-icons a:hover {
+        .footer .social-icons a:hover {
             color: var(--secondary-color);
         }
-
-        /* Estilos del botón de modo oscuro */
-        #darkModeToggle {
+        
+        #video-container {
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+            height: 0;
+            margin-bottom: 30px;
+            box-shadow: var(--box-shadow-dark);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        #video-container iframe {
             position: absolute;
-            top: 25px;
-            right: 25px;
-            background: none;
-            border: none;
-            cursor: pointer;
-            color: var(--white-color);
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
         }
-
-        #darkModeToggle:hover {
-            color: var(--secondary-color);
-        }
-
 
         * {
             box-sizing: border-box;
@@ -161,7 +140,7 @@
             line-height: 1.6;
             color: var(--text-color);
             background-color: var(--body-bg);
-            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), var(--body-bg-img);
+            background-image: linear-gradient(rgba(16, 24, 39, 0.85), rgba(16, 24, 39, 0.85)), var(--body-bg-img);
             background-size: cover;
             background-attachment: fixed;
             background-position: center;
@@ -182,7 +161,6 @@
             position: sticky;
             top: 0;
             z-index: 1000;
-            box-shadow: var(--box-shadow-dark);
             transition: background-color 0.5s ease;
         }
 
@@ -197,13 +175,9 @@
             font-size: 2rem;
             font-weight: 700;
             letter-spacing: 1px;
-            color: var(--white-color);
+            color: var(--dark-color);
         }
         
-        .logo span {
-            color: var(--secondary-color);
-        }
-
         .nav ul {
             list-style: none;
             display: flex;
@@ -211,16 +185,12 @@
         }
 
         .nav a {
-            color: var(--white-color);
+            color: var(--text-color);
             text-decoration: none;
             padding: 0.5rem 0.8rem;
             font-weight: 500;
             position: relative;
             transition: all 0.3s ease;
-        }
-
-        .nav a:hover {
-            color: var(--secondary-color);
         }
 
         .nav a::after {
@@ -262,7 +232,7 @@
 
         .btn-secondary {
             background: linear-gradient(45deg, var(--secondary-color), #f06292);
-            color: var(--white-color);
+            color: var(--text-color);
             padding: 12px 25px;
             text-decoration: none;
             border-radius: var(--border-radius);
@@ -295,7 +265,6 @@
             font-size: 2.8rem;
             font-weight: 700;
             margin-bottom: 20px;
-            color: var(--primary-color);
         }
 
         .section-title span {
@@ -304,21 +273,16 @@
 
         .section-subtitle {
             font-size: 1.2rem;
-            color: #777;
             margin-bottom: 60px;
             max-width: 800px;
             margin-left: auto;
             margin-right: auto;
         }
         
-        body.dark-mode .section-subtitle {
-            color: var(--text-color);
-        }
-
         /* Hero Section */
         .hero {
             background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
-            color: var(--white-color);
+            color: var(--text-color);
             text-align: center;
             padding: 120px 0;
             clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
@@ -332,7 +296,7 @@
             margin-bottom: 15px;
             font-weight: 700;
             line-height: 1.2;
-            color: var(--hero-title-light);
+            color: var(--hero-title-dark);
             transition: color 0.5s ease;
         }
 
@@ -381,11 +345,10 @@
             font-size: 1.8rem;
             margin-bottom: 10px;
             font-weight: 600;
-            color: var(--primary-color);
         }
 
         .service-card p {
-            color: #666;
+            color: var(--text-color);
             margin-bottom: 20px;
             flex-grow: 1;
         }
@@ -413,10 +376,6 @@
             font-size: 1.2rem;
         }
         
-        body.dark-mode .service-card p {
-            color: var(--text-color);
-        }
-
         /* Características */
         .caracteristica-grid {
             display: grid;
@@ -441,16 +400,12 @@
             font-size: 3.5rem;
             color: var(--primary-color);
             margin-bottom: 20px;
-            background: var(--light-color);
+            background: var(--footer-bg);
             padding: 20px;
             border-radius: 50%;
             display: inline-block;
         }
         
-        body.dark-mode .feature-item .icon {
-            background: var(--footer-bg);
-        }
-
         .feature-item h4 {
             font-family: var(--font-main);
             font-size: 1.5rem;
@@ -458,13 +413,9 @@
         }
 
         .feature-item p {
-            color: #666;
-        }
-        
-        body.dark-mode .feature-item p {
             color: var(--text-color);
         }
-
+        
         /* Acerca de */
         .about-grid {
             display: grid;
@@ -483,7 +434,7 @@
         .about-text p {
             font-size: 1.1rem;
             margin-bottom: 20px;
-            color: #555;
+            color: var(--text-color);
         }
 
         .about-text ul {
@@ -493,16 +444,11 @@
         .about-text li {
             font-size: 1.1rem;
             margin-bottom: 10px;
-            color: #555;
+            color: var(--text-color);
             display: flex;
             align-items: center;
         }
         
-        body.dark-mode .about-text p,
-        body.dark-mode .about-text li {
-            color: var(--text-color);
-        }
-
         .about-text li i {
             color: var(--secondary-color);
             margin-right: 15px;
@@ -518,17 +464,13 @@
         /* Separador */
         hr {
             border: 0;
-            border-top: 1px solid #ccc;
+            border-top: 1px solid #444;
             margin: 50px auto;
             width: 80%;
             opacity: 0.5;
             transition: border-color 0.5s ease;
         }
         
-        body.dark-mode hr {
-            border-color: #444;
-        }
-
         /* Testimonios */
         .testimonial-grid {
             display: grid;
@@ -546,7 +488,7 @@
 
         .testimonial-card blockquote {
             font-style: italic;
-            color: #555;
+            color: var(--text-color);
             margin-bottom: 15px;
         }
 
@@ -557,10 +499,6 @@
 
         .testimonial-card .author-title {
             font-size: 0.9rem;
-            color: #888;
-        }
-        
-        body.dark-mode .testimonial-card .author-title {
             color: var(--text-color);
             opacity: 0.7;
         }
@@ -605,7 +543,7 @@
         /* Pie de página */
         .footer {
             background: var(--footer-bg);
-            color: var(--white-color);
+            color: var(--text-color);
             text-align: center;
             padding: 30px 0;
             border-top: 5px solid var(--secondary-color);
@@ -613,7 +551,7 @@
         }
         
         .footer .social-icons a {
-            color: var(--white-color);
+            color: var(--text-color);
             font-size: 1.5rem;
             margin: 0 10px;
             transition: color 0.3s ease;
@@ -626,10 +564,6 @@
         .footer p {
             margin-top: 15px;
             font-size: 0.9rem;
-            color: #aaa;
-        }
-        
-        body.dark-mode .footer p {
             color: #999;
         }
 
@@ -663,15 +597,10 @@
             .about-image {
                 order: -1;
             }
-
-            #darkModeToggle {
-                top: 15px;
-                right: 15px;
-            }
         }
     </style>
 </head>
-<body>
+<body class="dark-mode">
 
     <header class="header">
         <div class="container">
@@ -685,16 +614,15 @@
                     <li><a href="#contacto">Contacto</a></li>
                 </ul>
             </nav>
-            <button id="darkModeToggle" aria-label="Alternar modo oscuro"><i class="fas fa-moon"></i></button>
         </div>
     </header>
 
     <main class="main-content">
         <section class="hero">
             <div class="container">
-                <h2>Servicios de Hosting de Alto Rendimiento <br>para tus Proyectos</h2>
-                <p>Velocidad increíble, seguridad inquebrantable y soporte 24/7. ¡Conquista el mundo digital con nosotros!</p>
-                <a href="#services" class="btn">Ver Nuestros Servicios</a>
+                <div id="video-container">
+                    <iframe src="https://www.youtube.com/embed/L6AMRhCJJAw" title="YouTube video player" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
             </div>
         </section>
 
@@ -875,34 +803,5 @@
             <p>&copy; 2025 Sky Net Solutions. Todos los derechos reservados.</p>
         </div>
     </footer>
-
-    <script>
-        const darkModeToggle = document.getElementById('darkModeToggle');
-        const body = document.body;
-
-        // Comprueba si el usuario ya tiene una preferencia de modo oscuro
-        const savedDarkMode = localStorage.getItem('darkMode');
-        if (savedDarkMode === 'enabled') {
-            body.classList.add('dark-mode');
-            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-        } else {
-            // Elimina la clase por si acaso
-            body.classList.remove('dark-mode');
-            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-        }
-
-        darkModeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
-
-            if (body.classList.contains('dark-mode')) {
-                localStorage.setItem('darkMode', 'enabled');
-                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
-            } else {
-                localStorage.setItem('darkMode', 'disabled');
-                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
-            }
-        });
-    </script>
-
 </body>
 </html>

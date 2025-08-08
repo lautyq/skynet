@@ -1,0 +1,908 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sky Net Solutions - Servicios de Alto Rendimiento</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Estilos generales y variables */
+        :root {
+            /* Modo Claro (por defecto) */
+            --primary-color: #3f51b5; /* Azul índigo */
+            --secondary-color: #ff4081; /* Rosa fucsia */
+            --accent-color: #536dfe; /* Azul acento */
+            --dark-color: #2c3e50; /* Azul oscuro */
+            --light-color: #ecf0f1; /* Gris claro */
+            --white-color: #ffffff;
+            --body-bg: var(--light-color);
+          --body-bg-img: url('https://googleusercontent.com/image_collection/image_retrieval/11596770283826909374_1');
+            /* Ejemplo de URL: https://images.unsplash.com/photo-1510519138101-570d1dca3d66 */
+            --text-color: var(--dark-color);
+            --card-bg: rgba(255, 255, 255, 0.85);
+            --section-even-bg: rgba(255, 255, 255, 0.85);
+            --footer-bg: var(--dark-color);
+            --header-bg: rgba(44, 62, 80, 0.9);
+            --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.1);
+            --box-shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.3);
+            --hero-title-light: var(--white-color);
+            --hero-bg-overlay: rgba(0, 0, 0, 0.4);
+            
+            --font-main: 'Poppins', sans-serif;
+            --font-secondary: 'Roboto', sans-serif;
+            --border-radius: 12px;
+        }
+
+        /* Estilos del modo oscuro */
+        body.dark-mode {
+            --primary-color: #8c9eff; /* Azul claro más intenso */
+            --secondary-color: #ff80ab; /* Rosa fucsia más intenso */
+            --accent-color: #9fa8da; /* Azul acento claro */
+            --dark-color: #ecf0f1; /* Gris claro para el texto */
+            --white-color: #34495e; /* Azul más oscuro para tarjetas */
+            --body-bg: #101827; /* Fondo principal muy oscuro (dark-navy) */
+            --body-bg-img: none;
+            --text-color: #ecf0f1;
+            --card-bg: #1f283d;
+            --section-even-bg: #1f283d;
+            --footer-bg: #101827;
+            --header-bg: #101827;
+            --box-shadow-light: 0 4px 15px rgba(0, 0, 0, 0.3);
+            --box-shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.6);
+            --hero-title-dark: #ff80ab; /* Rosa brillante para el título del héroe en modo oscuro */
+        }
+        
+        body.dark-mode .logo span {
+            color: var(--secondary-color);
+        }
+
+        body.dark-mode .nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        body.dark-mode .nav a::after {
+            background: var(--secondary-color);
+        }
+        
+        body.dark-mode .header {
+            box-shadow: none;
+        }
+
+        body.dark-mode .hero {
+            background: linear-gradient(135deg, #101827, #2c3e50);
+        }
+        
+        body.dark-mode .section-title,
+        body.dark-mode h4,
+        body.dark-mode .about-text h3 {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .hero h2 {
+            color: var(--hero-title-dark);
+        }
+        
+        body.dark-mode .section-subtitle,
+        body.dark-mode p,
+        body.dark-mode .about-text p,
+        body.dark-mode .about-text li,
+        body.dark-mode .contact-form label,
+        body.dark-mode .testimonial-card blockquote {
+            color: var(--text-color);
+        }
+        
+        body.dark-mode .service-card,
+        body.dark-mode .feature-item,
+        body.dark-mode .contact-form,
+        body.dark-mode .testimonial-card {
+            background: var(--card-bg);
+            box-shadow: var(--box-shadow-dark);
+        }
+        
+        body.dark-mode .service-card li i,
+        body.dark-mode .feature-item .icon,
+        body.dark-mode .testimonial-card .author {
+            color: var(--primary-color);
+        }
+        
+        body.dark-mode .btn {
+            background: var(--primary-color);
+        }
+        
+        body.dark-mode .btn:hover {
+            background: var(--accent-color);
+        }
+        
+        body.dark-mode .btn-secondary {
+            background: linear-gradient(45deg, var(--secondary-color), #ff80ab);
+        }
+        
+        body.dark-mode .footer {
+            border-top: 5px solid var(--secondary-color);
+        }
+
+        body.dark-mode .footer .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+
+        /* Estilos del botón de modo oscuro */
+        #darkModeToggle {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            background: none;
+            border: none;
+            cursor: pointer;
+            color: var(--white-color);
+            font-size: 1.5rem;
+            transition: color 0.3s ease;
+        }
+
+        #darkModeToggle:hover {
+            color: var(--secondary-color);
+        }
+
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-secondary);
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--body-bg);
+            background-image: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), var(--body-bg-img);
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            transition: background-color 0.5s ease, color 0.5s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 25px;
+        }
+
+        /* Encabezado */
+        .header {
+            background: var(--header-bg);
+            color: var(--text-color);
+            padding: 1.2rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--box-shadow-dark);
+            transition: background-color 0.5s ease;
+        }
+
+        .header .container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-main);
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: 1px;
+            color: var(--white-color);
+        }
+        
+        .logo span {
+            color: var(--secondary-color);
+        }
+
+        .nav ul {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+
+        .nav a {
+            color: var(--white-color);
+            text-decoration: none;
+            padding: 0.5rem 0.8rem;
+            font-weight: 500;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        .nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+        
+        .nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Botones */
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: var(--white-color);
+            padding: 14px 30px;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow-light);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn:hover {
+            background: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(45deg, var(--secondary-color), #f06292);
+            color: var(--white-color);
+            padding: 12px 25px;
+            text-decoration: none;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            display: block;
+            text-align: center;
+            margin-top: auto;
+            transition: all 0.3s ease;
+            box-shadow: var(--box-shadow-light);
+        }
+
+        .btn-secondary:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        /* Secciones */
+        section {
+            padding: 80px 0;
+            text-align: center;
+        }
+
+        section:nth-child(even) {
+            background: var(--section-even-bg);
+            transition: background-color 0.5s ease;
+        }
+        
+        .section-title {
+            font-family: var(--font-main);
+            font-size: 2.8rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary-color);
+        }
+
+        .section-title span {
+            color: var(--secondary-color);
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: #777;
+            margin-bottom: 60px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        body.dark-mode .section-subtitle {
+            color: var(--text-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: var(--white-color);
+            text-align: center;
+            padding: 120px 0;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+            margin-bottom: -50px;
+            transition: background-color 0.5s ease;
+        }
+
+        .hero h2 {
+            font-family: var(--font-main);
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            line-height: 1.2;
+            color: var(--hero-title-light);
+            transition: color 0.5s ease;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 40px;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        /* Servicios */
+        .service-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            align-items: stretch;
+        }
+
+        .service-card {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-light);
+            display: flex;
+            flex-direction: column;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            text-align: left;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .service-card .service-icon {
+            font-size: 3.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 20px;
+        }
+
+        .service-card h4 {
+            font-family: var(--font-main);
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .service-card p {
+            color: #666;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+        
+        .service-card ul {
+            list-style: none;
+            text-align: left;
+            margin-bottom: 30px;
+        }
+        
+        .service-card li {
+            padding: 8px 0;
+            border-bottom: 1px solid #e0e0e0;
+            display: flex;
+            align-items: center;
+        }
+
+        .service-card li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-card li i {
+            color: var(--primary-color);
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        body.dark-mode .service-card p {
+            color: var(--text-color);
+        }
+
+        /* Características */
+        .caracteristica-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 40px;
+        }
+
+        .feature-item {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-light);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .feature-item:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--box-shadow-dark);
+        }
+
+        .feature-item .icon {
+            font-size: 3.5rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+            background: var(--light-color);
+            padding: 20px;
+            border-radius: 50%;
+            display: inline-block;
+        }
+        
+        body.dark-mode .feature-item .icon {
+            background: var(--footer-bg);
+        }
+
+        .feature-item h4 {
+            font-family: var(--font-main);
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-item p {
+            color: #666;
+        }
+        
+        body.dark-mode .feature-item p {
+            color: var(--text-color);
+        }
+
+        /* Acerca de */
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            text-align: left;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            font-family: var(--font-main);
+            margin-bottom: 20px;
+        }
+
+        .about-text p {
+            font-size: 1.1rem;
+            margin-bottom: 20px;
+            color: #555;
+        }
+
+        .about-text ul {
+            list-style: none;
+        }
+        
+        .about-text li {
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+            color: #555;
+            display: flex;
+            align-items: center;
+        }
+        
+        body.dark-mode .about-text p,
+        body.dark-mode .about-text li {
+            color: var(--text-color);
+        }
+
+        .about-text li i {
+            color: var(--secondary-color);
+            margin-right: 15px;
+        }
+
+        .about-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-dark);
+        }
+        
+        /* Separador */
+        hr {
+            border: 0;
+            border-top: 1px solid #ccc;
+            margin: 50px auto;
+            width: 80%;
+            opacity: 0.5;
+            transition: border-color 0.5s ease;
+        }
+        
+        body.dark-mode hr {
+            border-color: #444;
+        }
+
+        /* Testimonios */
+        .testimonial-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-light);
+            text-align: left;
+        }
+
+        .testimonial-card blockquote {
+            font-style: italic;
+            color: #555;
+            margin-bottom: 15px;
+        }
+
+        .testimonial-card .author {
+            font-weight: 600;
+            color: var(--primary-color);
+        }
+
+        .testimonial-card .author-title {
+            font-size: 0.9rem;
+            color: #888;
+        }
+        
+        body.dark-mode .testimonial-card .author-title {
+            color: var(--text-color);
+            opacity: 0.7;
+        }
+        
+        .testimonial-card .rating {
+            color: gold;
+            margin-bottom: 10px;
+        }
+
+        /* Contacto */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-light);
+            text-align: left;
+        }
+
+        .contact-form label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 500;
+        }
+
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            border: 1px solid #ccc;
+            font-family: inherit;
+        }
+        
+        .contact-form textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        /* Pie de página */
+        .footer {
+            background: var(--footer-bg);
+            color: var(--white-color);
+            text-align: center;
+            padding: 30px 0;
+            border-top: 5px solid var(--secondary-color);
+            transition: background-color 0.5s ease;
+        }
+        
+        .footer .social-icons a {
+            color: var(--white-color);
+            font-size: 1.5rem;
+            margin: 0 10px;
+            transition: color 0.3s ease;
+        }
+        
+        .footer .social-icons a:hover {
+            color: var(--secondary-color);
+        }
+        
+        .footer p {
+            margin-top: 15px;
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+        
+        body.dark-mode .footer p {
+            color: #999;
+        }
+
+        /* Responsive */
+        @media(max-width: 768px) {
+            .header .container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .logo {
+                margin-bottom: 1rem;
+            }
+
+            .nav ul {
+                justify-content: center;
+            }
+
+            .hero h2 {
+                font-size: 2.5rem;
+            }
+            
+            .hero p {
+                font-size: 1.2rem;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .about-image {
+                order: -1;
+            }
+
+            #darkModeToggle {
+                top: 15px;
+                right: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="container">
+            <h1 class="logo">Sky Net <span>Solutions</span></h1>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#about">Nosotros</a></li>
+                    <li><a href="#services">Servicios</a></li>
+                    <li><a href="#caracteristicas">Características</a></li>
+                    <li><a href="#testimonios">Testimonios</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+            <button id="darkModeToggle" aria-label="Alternar modo oscuro"><i class="fas fa-moon"></i></button>
+        </div>
+    </header>
+
+    <main class="main-content">
+        <section class="hero">
+            <div class="container">
+                <h2>Servicios de Hosting de Alto Rendimiento <br>para tus Proyectos</h2>
+                <p>Velocidad increíble, seguridad inquebrantable y soporte 24/7. ¡Conquista el mundo digital con nosotros!</p>
+                <a href="#services" class="btn">Ver Nuestros Servicios</a>
+            </div>
+        </section>
+
+        <section id="about">
+            <div class="container">
+                <h2 class="section-title">Acerca de <span>Nosotros</span></h2>
+                <div class="about-grid">
+                    <div class="about-text">
+                        <h3>Liderando la Innovación Tecnológica</h3>
+                        <p>En Sky Net Solutions, estamos comprometidos con el éxito de nuestros clientes. Ofrecemos soluciones tecnológicas robustas y escalables, diseñadas para satisfacer las necesidades de gamers, comunidades y empresas. Nuestra misión es simple: proporcionar una infraestructura tecnológica de primer nivel que garantice la velocidad, la seguridad y la disponibilidad en todo momento.</p>
+                        <ul>
+                            <li><i class="fas fa-check-circle"></i> Profesionales con años de experiencia en la industria.</li>
+                            <li><i class="fas fa-check-circle"></i> Centro de datos de última generación.</li>
+                            <li><i class="fas fa-check-circle"></i> Equipo de soporte técnico altamente calificado.</li>
+                            <li><i class="fas fa-check-circle"></i> Soluciones personalizadas para cada cliente.</li>
+                        </ul>
+                    </div>
+                    <div class="about-image">
+                        <img src="https://images.unsplash.com/photo-1542831371-29b0f74f9713" alt="Equipo de Sky Net Solutions trabajando en un centro de datos">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="services">
+            <div class="container">
+                <h2 class="section-title">Nuestros <span>Servicios</span></h2>
+                <p class="section-subtitle">Descubre la potencia que ofrecemos para tus proyectos de gaming, bots y comunicación.</p>
+                <div class="service-grid">
+                    <div class="service-card">
+                        <i class="fas fa-server service-icon"></i>
+                        <h4>Servidores de SAMP</h4>
+                        <p>Hosting de alto rendimiento para tus servidores de San Andreas Multiplayer (SAMP). Baja latencia, protección DDoS y un panel de control intuitivo para una gestión sencilla.</p>
+                        <a href="#" class="btn-secondary">Más Información</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-gamepad service-icon"></i>
+                        <h4>Servidores de MTA</h4>
+                        <p>Servidores optimizados para Multi Theft Auto (MTA). Disfruta de un rendimiento excepcional y la estabilidad que necesitas para tu comunidad de roleplay o deathmatch.</p>
+                        <a href="#" class="btn-secondary">Más Información</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-cloud service-icon"></i>
+                        <h4>Servidores VPS</h4>
+                        <p>Máquinas virtuales privadas (VPS) con recursos dedicados. Ideales para proyectos web, bases de datos o cualquier aplicación que requiera un control total.</p>
+                        <a href="#" class="btn-secondary">Más Información</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fab fa-discord service-icon"></i>
+                        <h4>Hosting de Bot de Discord</h4>
+                        <p>Mantén tu bot de Discord online 24/7 con nuestro hosting especializado. Asegura una experiencia fluida y sin interrupciones para tu comunidad.</p>
+                        <a href="#" class="btn-secondary">Más Información</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-microphone-alt service-icon"></i>
+                        <h4>Servicios de Voz</h4>
+                        <p>Servicios de TeamSpeak 3 y Mumble para una comunicación de voz nítida y confiable. Perfectos para gaming y coordinación de equipos.</p>
+                        <a href="#" class="btn-secondary">Más Información</a>
+                    </div>
+                    <div class="service-card">
+                        <i class="fas fa-cogs service-icon"></i>
+                        <h4>Y Más...</h4>
+                        <p>Explora nuestras soluciones personalizadas. Contáctanos para discutir tus necesidades y encontrar la solución perfecta para tu proyecto.</p>
+                        <a href="#contacto" class="btn-secondary">¡Contáctanos!</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="caracteristicas">
+            <div class="container">
+                <h2 class="section-title">Características <span>Principales</span></h2>
+                <p class="section-subtitle">Lo que nos hace la mejor opción para tus proyectos en línea.</p>
+                <div class="caracteristica-grid">
+                    <div class="feature-item">
+                        <i class="fas fa-rocket icon"></i>
+                        <h4>Velocidad Extrema</h4>
+                        <p>Servidores optimizados con SSD NVMe de última generación para un rendimiento superior en todos tus servicios.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-shield-alt icon"></i>
+                        <h4>Seguridad Avanzada</h4>
+                        <p>Protección DDoS y copias de seguridad diarias para garantizar la integridad y disponibilidad de tus datos.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-life-ring icon"></i>
+                        <h4>Soporte 24/7</h4>
+                        <p>Nuestro equipo de expertos está disponible en cualquier momento para ayudarte con tus consultas y problemas.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-database icon"></i>
+                        <h4>Copias de Seguridad</h4>
+                        <p>Protege tu información con copias de seguridad automáticas diarias, semanales o mensuales.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cloud icon"></i>
+                        <h4>Escalabilidad</h4>
+                        <p>Nuestros servicios crecen contigo. Escala tus recursos fácilmente cuando tu proyecto lo necesite.</p>
+                    </div>
+                    <div class="feature-item">
+                        <i class="fas fa-cogs icon"></i>
+                        <h4>Panel de Control Intuitivo</h4>
+                        <p>Administra tus servicios de manera sencilla y eficiente con nuestro panel de control fácil de usar.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="testimonios" class="planes">
+            <div class="container">
+                <h2 class="section-title">Opiniones de Nuestros <span>Clientes</span></h2>
+                <p class="section-subtitle">Escucha lo que otros proyectos exitosos tienen que decir sobre Sky Net Solutions.</p>
+                <div class="testimonial-grid">
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <blockquote>"El cambio a Sky Net Solutions fue la mejor decisión para mi servidor de SAMP. La velocidad y la baja latencia son impresionantes y el soporte técnico siempre está ahí para resolver mis dudas."</blockquote>
+                        <p class="author">Ana Pérez</p>
+                        <p class="author-title">Administradora de "Roleplay Los Santos"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <blockquote>"Su VPS ha superado todas mis expectativas. La estabilidad del servidor y la libertad para configurar lo que necesito me han permitido crecer sin preocupaciones."</blockquote>
+                        <p class="author">Carlos Rodríguez</p>
+                        <p class="author-title">Desarrollador de "Innova Tech"</p>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="rating">
+                            <i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i>
+                        </div>
+                        <blockquote>"Necesitábamos una solución segura y rápida para nuestra comunidad de Discord, y Sky Net Solutions nos dio el hosting perfecto para nuestro bot. El servicio es impecable y el precio es justo."</blockquote>
+                        <p class="author">María Gómez</p>
+                        <p class="author-title">Community Manager de "Comunidad Gamer"</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <hr>
+
+        <section id="contacto">
+            <div class="container">
+                <h2 class="section-title">Contacta <span>con Nosotros</span></h2>
+                <p class="section-subtitle">¿Tienes alguna pregunta? Estamos aquí para ayudarte a encontrar la mejor solución para tu proyecto.</p>
+                <div class="contact-form">
+                    <form action="https://formspree.io/f/myzpbrod" method="POST">
+                        <label for="name">Nombre Completo</label>
+                        <input type="text" id="name" name="name" placeholder="Tu nombre" required>
+                        
+                        <label for="email">Correo Electrónico</label>
+                        <input type="email" id="email" name="email" placeholder="tu.correo@ejemplo.com" required>
+                        
+                        <label for="message">Mensaje</label>
+                        <textarea id="message" name="message" placeholder="Escribe tu mensaje aquí..." required></textarea>
+                        
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <div class="social-icons">
+                <a href="https://discord.gg/KUXPVGwArF" target="_blank"><i class="fab fa-discord"></i></a>
+            </div>
+            <p>&copy; 2025 Sky Net Solutions. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+
+    <script>
+        const darkModeToggle = document.getElementById('darkModeToggle');
+        const body = document.body;
+
+        // Comprueba si el usuario ya tiene una preferencia de modo oscuro
+        const savedDarkMode = localStorage.getItem('darkMode');
+        if (savedDarkMode === 'enabled') {
+            body.classList.add('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+        } else {
+            // Elimina la clase por si acaso
+            body.classList.remove('dark-mode');
+            darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+        }
+
+        darkModeToggle.addEventListener('click', () => {
+            body.classList.toggle('dark-mode');
+
+            if (body.classList.contains('dark-mode')) {
+                localStorage.setItem('darkMode', 'enabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-sun"></i>';
+            } else {
+                localStorage.setItem('darkMode', 'disabled');
+                darkModeToggle.innerHTML = '<i class="fas fa-moon"></i>';
+            }
+        });
+    </script>
+
+</body>
+</html>

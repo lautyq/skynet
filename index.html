@@ -145,6 +145,25 @@
             transform: scale(1.05);
         }
 
+        /* Estilos para el widget de Discord */
+        #discord-widget {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        #discord-widget .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        #discord-widget iframe {
+            border-radius: var(--border-radius);
+            box-shadow: var(--box-shadow-dark);
+            width: 100%;
+            max-width: 350px;
+        }
+
         * {
             box-sizing: border-box;
             margin: 0;
@@ -681,6 +700,21 @@
         <a href="https://discord.gg/KUXPVGwArF" class="discord-ad">
             🚀 ¡Únete a la comunidad en Discord! 🚀
         </a>
+        
+        <section id="discord-widget">
+            <div class="container">
+                <h2 class="section-title">Nuestra Comunidad en <span>Discord</span></h2>
+                <p class="section-subtitle">Únete a nosotros y conecta con otros miembros de Sky Net Solutions.</p>
+                <iframe src="https://discord.com/widget?id=1357328276183453790&theme=dark" 
+                        width="350" height="500" 
+                        allowtransparency="true" 
+                        frameborder="0" 
+                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                </iframe>
+            </div>
+        </section>
+
+        <hr>
 
         <section id="about">
             <div class="container">
@@ -749,7 +783,7 @@
                 </div>
             </div>
         </section>
-        
+
         <hr>
 
         <section id="caracteristicas">

@@ -266,6 +266,21 @@
             .login-btn {
                 display: none; /* Ocultar el botón de login en el encabezado móvil */
             }
+            
+            /* ESTILO CORREGIDO: Para que el botón 'Login' dentro del menú móvil se vea como un enlace */
+            .header .nav .btn {
+                background: none;
+                color: var(--text-color);
+                box-shadow: none;
+                padding: 15px 0;
+                border-radius: 0;
+            }
+            
+            .header .nav .btn:hover {
+                background: none;
+                color: var(--secondary-color);
+                transform: none;
+            }
         }
         
 
@@ -753,8 +768,7 @@
             }
             
             .login-btn {
-                margin-left: 0;
-                margin-top: 15px;
+                display: none; /* Ocultar el botón de login en el encabezado móvil */
             }
 
             .hero h2 {

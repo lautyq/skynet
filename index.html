@@ -125,44 +125,76 @@
             border: 0;
         }
         
-        /* Estilos del nuevo botón de Discord */
-        .discord-ad {
-            display: block;
-            margin: 20px auto;
-            padding: 20px 40px;
+        /* Estilos para la sección de Discord con el botón y el widget */
+        #discord-section {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        #discord-section .container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .discord-container {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap; /* Para que se adapte a pantallas pequeñas */
+        }
+        
+        .discord-button {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
             background-color: #5865F2; /* Color de Discord */
             color: #ffffff;
-            font-size: 1.8em;
+            font-size: 1.5em;
             font-weight: bold;
             text-decoration: none;
             border-radius: 12px;
             box-shadow: 0 6px 12px rgba(0,0,0,0.4);
             transition: background-color 0.3s, transform 0.3s;
             max-width: 500px;
+            padding: 40px; /* Aumentar el padding para que se vea más grande */
+            text-align: center;
+            height: 500px; /* Para que tenga la misma altura que el widget */
         }
-        .discord-ad:hover {
+
+        .discord-button i {
+            font-size: 5em;
+            margin-bottom: 20px;
+        }
+        
+        .discord-button:hover {
             background-color: #4a54d4;
-            transform: scale(1.05);
+            transform: scale(1.02);
         }
-
-        /* Estilos para el widget de Discord */
-        #discord-widget {
-            padding-top: 50px;
-            padding-bottom: 50px;
-        }
-
-        #discord-widget .container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-        }
-
-        #discord-widget iframe {
+        
+        #discord-section iframe {
             border-radius: var(--border-radius);
             box-shadow: var(--box-shadow-dark);
-            width: 100%;
-            max-width: 350px;
+            width: 350px;
+            height: 500px; /* Para que tenga la misma altura que el botón */
         }
+        
+        @media (max-width: 768px) {
+            .discord-container {
+                flex-direction: column;
+            }
+            .discord-button {
+                height: auto; /* Se ajusta el alto automáticamente */
+                padding: 30px;
+            }
+            #discord-section iframe {
+                width: 100%;
+                max-width: 350px;
+            }
+        }
+        
 
         * {
             box-sizing: border-box;
@@ -697,20 +729,26 @@
             </div>
         </section>
 
-        <a href="https://discord.gg/KUXPVGwArF" class="discord-ad">
-            🚀 ¡Únete a la comunidad en Discord! 🚀
-        </a>
+        <hr>
         
-        <section id="discord-widget">
+        <section id="discord-section">
             <div class="container">
                 <h2 class="section-title">Nuestra Comunidad en <span>Discord</span></h2>
                 <p class="section-subtitle">Únete a nosotros y conecta con otros miembros de Sky Net Solutions.</p>
-                <iframe src="https://discord.com/widget?id=1357328276183453790&theme=dark" 
-                        width="350" height="500" 
-                        allowtransparency="true" 
-                        frameborder="0" 
-                        sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
-                </iframe>
+
+                <div class="discord-container">
+                    <a href="https://discord.gg/KUXPVGwArF" class="discord-button" target="_blank">
+                        <i class="fab fa-discord"></i>
+                        <span>¡Únete a la Comunidad!</span>
+                    </a>
+                    
+                    <iframe src="https://discord.com/widget?id=1357328276183453790&theme=dark" 
+                            width="350" height="500" 
+                            allowtransparency="true" 
+                            frameborder="0" 
+                            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts">
+                    </iframe>
+                </div>
             </div>
         </section>
 
